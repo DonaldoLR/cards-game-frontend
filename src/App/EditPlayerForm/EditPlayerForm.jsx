@@ -10,6 +10,8 @@ const EditPlayerForm = () => {
 	const { id } = useParams();
 
 	const [formData, setFormData] = useState(initialFormData);
+	const [serverErrors, setServerErrors] = useState([]);
+
 	useEffect(() => {
 		fetch(`${process.env.REACT_APP_BASE_URL}/users/${id}`)
 			.then((res) => res.json())
@@ -38,12 +40,18 @@ const EditPlayerForm = () => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				history.push("/");
+				if (data.errors) {
+					setServerErrors(data.errors);
+				} else {
+					setFormData(initialFormData);
+					history.push("/");
+				}
 			})
 			.catch((err) => console.log(err));
 	};
 
 	const handleDelete = (e) => {
+		e.preventDefault();
 		e.stopPropagation();
 
 		fetch(`${process.env.REACT_APP_BASE_URL}/users/${id}`, {
@@ -53,14 +61,22 @@ const EditPlayerForm = () => {
 			},
 		})
 			.then((res) => res.json())
-			.then((data) => {
+			.then(() => {
 				history.push("/");
 			})
 			.catch((err) => console.log(err));
 	};
+	const displayErrors = () => {
+		return serverErrors.map((error, idx) => (
+			<div key={`${idx} - ${error}`} className='alert alert-danger'>
+				{error}
+			</div>
+		));
+	};
 	return (
 		<div className='container'>
 			<form onSubmit={handleSubmit} className='row g-0'>
+				{displayErrors()}
 				<div className='mb-3'>
 					<label htmlFor='name' className='form-label'>
 						Player Name:

@@ -9,6 +9,8 @@ const NewPlayerForm = () => {
 	const history = useHistory();
 
 	const [formData, setFormData] = useState(initialFormData);
+	const [serverErrors, setServerErrors] = useState([]);
+
 	const handleChange = (e) => {
 		let key = e.target.name;
 		let value = e.target.value;
@@ -29,14 +31,25 @@ const NewPlayerForm = () => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				setFormData(initialFormData);
-				history.push("/");
-			})
-			.catch((err) => console.log(err));
+				if (data.errors) {
+					setServerErrors(data.errors);
+				} else {
+					setFormData(initialFormData);
+					history.push("/");
+				}
+			});
+	};
+	const displayErrors = () => {
+		return serverErrors.map((error, idx) => (
+			<div key={`${idx} - ${error}`} className='alert alert-danger'>
+				{error}
+			</div>
+		));
 	};
 	return (
-		<div className='container'>
+		<div className='container mt-5'>
 			<form onSubmit={handleSubmit} className='row g-0'>
+				{displayErrors()}
 				<div className='mb-3'>
 					<label htmlFor='name' className='form-label'>
 						Player Name:
