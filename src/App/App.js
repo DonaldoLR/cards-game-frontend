@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CardsContainer from "./CardsContainer/CardsContainer";
 import EditPlayerForm from "./EditPlayerForm/EditPlayerForm";
+import Navigation from "./Navigation/Navigation";
 import NewPlayerForm from "./NewPlayerForm/NewPlayerForm";
 import NoMatch from "./NoMatch/NoMatch";
 import PlayerCardsContainer from "./PlayerCardsContainer/PlayerCardsContainer";
@@ -9,6 +10,7 @@ import PlayerContainer from "./PlayerContainer/PlayerContainer";
 function App() {
 	return (
 		<Router>
+			<Navigation />
 			<Switch>
 				<Route exact path='/'>
 					<PlayerContainer />

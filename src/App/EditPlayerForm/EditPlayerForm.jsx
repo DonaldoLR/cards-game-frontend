@@ -59,8 +59,8 @@ const EditPlayerForm = () => {
 			.catch((err) => console.log(err));
 	};
 	return (
-		<>
-			<form onSubmit={handleSubmit}>
+		<div className='container'>
+			<form onSubmit={handleSubmit} className='row g-0'>
 				<div className='mb-3'>
 					<label htmlFor='name' className='form-label'>
 						Player Name:
@@ -87,14 +87,14 @@ const EditPlayerForm = () => {
 						onChange={handleChange}
 					/>
 				</div>
-				<button type='submit' className='btn btn-primary'>
+				<button type='submit' className='btn btn-primary col-2 me-3'>
 					Save Changes
 				</button>
+				<button className='btn btn-danger col-2' onClick={handleDelete}>
+					Delete Player
+				</button>
 			</form>
-			<button className='btn btn-danger' onClick={handleDelete}>
-				Delete Player
-			</button>
-		</>
+		</div>
 	);
 };
 

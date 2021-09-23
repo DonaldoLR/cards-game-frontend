@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import Player from "./Player/Player";
 
 const PlayerContainer = () => {
@@ -23,13 +22,8 @@ const PlayerContainer = () => {
 		));
 	};
 	return (
-		<div>
-			{players && displayPlayers()}{" "}
-			<div>
-				<NavLink to='newPlayer' className='btn btn-primary'>
-					Add a new player
-				</NavLink>
-			</div>
+		<div className='container'>
+			<div className='row g-0 mt-5 mx-5'>{players && displayPlayers()}</div>
 		</div>
 	);
 };
