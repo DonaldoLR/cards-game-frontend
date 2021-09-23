@@ -8,11 +8,11 @@ const PlayerCardsContainer = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		fetch(`http://localhost:3000/users/${id}`)
+		fetch(`${process.env.REACT_APP_BASE_URL}/users/${id}`)
 			.then((res) => res.json())
 			.then((data) => {
 				if (data["error"]) {
-					history.push("/404");
+					history.replace("/404");
 				} else {
 					setPlayer(data);
 				}

@@ -8,6 +8,7 @@ import PlayerCardsContainer from "./PlayerCardsContainer/PlayerCardsContainer";
 import PlayerContainer from "./PlayerContainer/PlayerContainer";
 
 function App() {
+	console.log(`${process.env.REACT_APP_BASE_URL}`);
 	return (
 		<Router>
 			<Navigation />

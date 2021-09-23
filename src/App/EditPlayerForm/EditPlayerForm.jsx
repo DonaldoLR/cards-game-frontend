@@ -11,7 +11,7 @@ const EditPlayerForm = () => {
 
 	const [formData, setFormData] = useState(initialFormData);
 	useEffect(() => {
-		fetch(`http://localhost:3000/users/${id}`)
+		fetch(`${process.env.REACT_APP_BASE_URL}/users/${id}`)
 			.then((res) => res.json())
 			.then(setFormData)
 			.catch((err) => console.log(err));
@@ -29,7 +29,7 @@ const EditPlayerForm = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		fetch(`http://localhost:3000/users/${id}`, {
+		fetch(`${process.env.REACT_APP_BASE_URL}/users/${id}`, {
 			method: "PATCH",
 			headers: {
 				"Content-Type": "application/json",
@@ -46,7 +46,7 @@ const EditPlayerForm = () => {
 	const handleDelete = (e) => {
 		e.stopPropagation();
 
-		fetch(`http://localhost:3000/users/${id}`, {
+		fetch(`${process.env.REACT_APP_BASE_URL}/users/${id}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",

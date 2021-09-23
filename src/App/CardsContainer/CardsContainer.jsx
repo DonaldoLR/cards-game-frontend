@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 const CardsContainer = () => {
 	const [cards, setCards] = useState(null);
 	useEffect(() => {
-		fetch("http://localhost:3000/cards")
+		fetch(`${process.env.REACT_APP_BASE_URL}/cards`)
 			.then((res) => res.json())
 			.then(setCards);
 	}, []);

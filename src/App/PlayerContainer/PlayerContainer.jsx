@@ -5,7 +5,7 @@ const PlayerContainer = () => {
 	const [players, setPlayers] = useState(null);
 
 	useEffect(() => {
-		fetch(`http://localhost:3000/users`)
+		fetch(`${process.env.REACT_APP_BASE_URL}/users`)
 			.then((res) => res.json())
 			.then(setPlayers)
 			.catch((error) => console.log(error));
